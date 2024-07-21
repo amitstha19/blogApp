@@ -12,6 +12,9 @@ class PostController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
+        /*
+        dd(Post::factory()->create());
+        */
         $posts = Post::all();
         dd($posts);
         return view('Posts.index', compact('posts'));
