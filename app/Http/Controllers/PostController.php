@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
 
@@ -15,8 +15,10 @@ class PostController extends Controller
         /*
         dd(Post::factory()->create());
         */
-        $posts = Post::all();
-        dd($posts);
+        //dd (Auth::user());
+        //$posts = Post::all();
+        $posts = Auth::user()->posts;
+        // dd($posts);
         return view('Posts.index', compact('posts'));
     }
 
@@ -46,7 +48,10 @@ class PostController extends Controller
      * Display the specified resource.
      */
     public function show(Post $post){
-        dd($post);
+        if (Auth::id() != $post->id){
+            abort(403);
+        }
+        //dd($post);
         return view('Posts.show', compact('post'));
     }
 
