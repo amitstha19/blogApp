@@ -1,3 +1,29 @@
+Assignment1
+Amit Shrestha
+Github link for the blog application:" https://github.com/amitstha19/blogApp "
+In this assessment, Created a basic CRUD (Create, Read, Update, Delete) application using
+Laravel 11. 
+In this application User can Signup and Login the account
+User can create the post
+User can Read the post
+User can Edit the post
+User can Delete the post
+For the database I have used the mongodb
+
+#Difficulties and Challenges
+- Encountered difficulties in connecting Laravel to the MySQL database.
+- Faced errors while running migrations due to missing fields in the schema definition.
+- Some CRUD functionalities did not work as expected during initial testing.
+- Managing version control and resolving merge conflicts.
+
+#Approaches
+- Realized the issue was due to incorrect credentials in the .env file. Double-checked and corrected the details.
+- Fixed by carefully reviewing the migration files and adding the necessary fields.
+- Thoroughly tested each function and fixed issues by debugging with Laravel’s tools and checking log files.
+- Used Git branches for different features and resolved conflicts by carefully reviewing changes.
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

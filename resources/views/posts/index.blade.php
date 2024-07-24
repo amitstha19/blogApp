@@ -22,7 +22,6 @@
             <th>Post Description</th>
             <th width="320px">Functions</th>
         </tr>
-        
         @php $a= 0; @endphp
         @foreach ($posts as $post)
         <tr>
