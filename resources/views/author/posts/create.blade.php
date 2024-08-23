@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('admin.app')
 
 @section('content')
-    <h1>Blog Post Create</h1>   
-     <form action="{{ route('posts.store') }}" method="POST">
+    <h1> Create Blog Post</h1>   
+     <form action="{{ route('author.posts.store') }}" method="POST">
         @csrf 
         <div class="form-group">
             <label for="title">Title</label>

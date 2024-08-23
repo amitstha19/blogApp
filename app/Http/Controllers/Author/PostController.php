@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Author;
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,24 +18,23 @@ class PostController extends Controller
         
         //dd (Auth::user());
         $user=Auth::user();
-        if(isset($user))
-        {
-            $posts=$user->role=='adn'?  Post::all():  Post::where('user_id','=',$user->_id)->get();
-        }
-        else{
-        $posts = Post::all();
-        }
+   
+            $posts= Post::where('user_id','=',$user->id)->get();
+        
+            
+    
+    
         //$posts = Auth::user()->posts;
         // dd($posts);
         //$posts= Post::paginate(10);
-        return view('admin.posts.index', compact('posts'));
+        return view('author.posts.index', compact('posts'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create(){
-        return view('admin.posts.create');
+        return view('author.posts.create');
     }
 
 
@@ -45,7 +45,7 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index')
+        return redirect()->route('author.posts.index')
                         ->with('success', 'Your Post Deleted Successfully.');
     }
     /**
@@ -59,12 +59,17 @@ class PostController extends Controller
             'title' =>'required',
             'content' =>'required',
         ]);
-        
+        $userId = auth()->user()->id;
         //creating post and saving to database
-        Post::create($request->all());
+        Post::create([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'user_id' => $userId, // Add the user ID
+        ]);
+
         
         //returning posts in index
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('author.posts.index');
 
     }
 
@@ -78,7 +83,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        return view('author.posts.edit', compact('post'));
     }
 
     /**
@@ -93,7 +98,7 @@ class PostController extends Controller
 
         $post->update($request->all());
 
-        return redirect()->route('admin.posts.index')
+        return redirect()->route('author.posts.index')
                         ->with('success', 'Your Post Updated successfully.');
     }
 
@@ -105,6 +110,6 @@ class PostController extends Controller
         //     abort(403);
         // }
         //dd($post);
-        return view('admin.posts.show', compact('post'));
+        return view('author.posts.show', compact('post'));
     }
 }

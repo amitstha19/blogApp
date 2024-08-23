@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -66,7 +66,31 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role'=>'author',
             'password' => Hash::make($data['password']),
         ]);
+    }/**
+     * Handle the post-registration redirect based on user role.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    protected function registered(Request $request, $user)
+    {
+        // Redirect based on user role
+        switch ($user->role) {
+            case 'admin':
+                return redirect('/admin/posts');
+            case 'author':
+                return redirect('/author/posts');
+            case 'user':
+                return redirect('/home');
+            default:
+                return redirect('/home'); // Default redirect if role is unknown
+        }
     }
+
+
+
 }

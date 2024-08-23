@@ -1,4 +1,4 @@
-Assignment1
+Assignment2
 Amit Shrestha
 Github link for the blog application:" https://github.com/amitstha19/blogApp "
 In this assessment, Created a basic CRUD (Create, Read, Update, Delete) application using

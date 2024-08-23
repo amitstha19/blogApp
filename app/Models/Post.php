@@ -12,7 +12,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content','user_id'];
     // protected static function booted()
     // {
     //     static::creating(function (Post $post){

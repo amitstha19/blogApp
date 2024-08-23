@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.app')
 
 @section('content')
     <div class="row">
@@ -7,7 +7,7 @@
                 <h2>Edit Posts</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('author.posts.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </div>
     @endif
 <!-- creating form to edit content -->
-    <form action="{{ route('posts.update', $post->_id) }}" method="POST" >
+    <form action="{{ route('author.posts.update', $post->_id) }}" method="POST" >
 
         @csrf
         @method('PUT')
